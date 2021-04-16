@@ -10,7 +10,7 @@ internal class OneTapItemToDisabledPaymentMethodMapper {
         return hashMapOf<Key, DisabledPaymentMethod>().also { map ->
             value.forEach { oneTapItem ->
                 oneTapItem.getApplications().forEach { application ->
-                    application.takeIf { !it.status.isEnabled }?.let {
+                    application.takeIf { !oneTapItem.isOfflineMethods && !it.status.isEnabled }?.let {
                         map[Key(CustomOptionIdSolver.getByApplication(oneTapItem, it), it.paymentMethod.type)] =
                             DisabledPaymentMethod(it.paymentMethod.id)
                     }
