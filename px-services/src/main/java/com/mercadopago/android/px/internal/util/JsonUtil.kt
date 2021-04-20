@@ -10,6 +10,7 @@ object JsonUtil {
     @JvmStatic
     val gson: Gson = GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
         .serializeNulls()
+        .enableComplexMapKeySerialization()
         .registerTypeAdapterFactory(ObjectMapTypeAdapter.FACTORY)
         .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
         .create()
